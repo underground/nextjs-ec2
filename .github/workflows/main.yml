@@ -1,0 +1,24 @@
+name: Deploy to DEV (AWS)
+
+on:
+  push:
+    branches: ["main"]
+
+env:
+  AWS_REGION: ap-northeast-1
+  ECR_REPOSITORY: frontend
+  ECS_SERVICE: test-service
+  ECS_CLUSTER: frontend-cluster
+  ECS_TASK_DEFINITION: task-definition.json
+  CONTAINER_NAME: frontend-container
+
+jobs:
+  deploy-dev:
+    uses: ./.github/workflows/deploy.yml
+    with:
+      aws-region: ${{ env.AWS_REGION }}
+      ecr-repository: ${{ env.ECR_REPOSITORY }}
+      aws-service: ${{ env.ECS_SERVICE }}
+      aws-cluster: ${{ env.ECS_CLUSTER }}
+      aws-task-definition: ${{ env.ECS_TASK_DEFINITION }}
+      container-name: ${{ env.CONTAINER_NAME }}

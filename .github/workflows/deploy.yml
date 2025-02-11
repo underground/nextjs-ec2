@@ -1,25 +1,48 @@
-name: Deploy to AWS
+name: Deploy to Amazon ECS
 
 on:
-  workflow_dispatch:
-  push:
-    branches: ["main"]
-
-env:
-  AWS_REGION: ap-northeast-1
-  ECR_REPOSITORY: frontend
-  ECS_SERVICE: test-service
-  ECS_CLUSTER: frontend-cluster
-  ECS_TASK_DEFINITION: task-definition.json
-  CONTAINER_NAME: frontend-container
+  workflow_call:
+    inputs:
+      aws-region:
+        description: "リージョン"
+        required: true
+        type: string
+      ecr-repository:
+        description: "ECRリポジトリ"
+        required: true
+        type: string
+      aws-service:
+        description: "サービス名"
+        required: true
+        type: string
+      aws-cluster:
+        description: "クラスタ名"
+        required: true
+        type: string
+      aws-task-definition:
+        description: "タスク定義ファイル"
+        required: true
+        type: string
+      container-name:
+        description: "コンテナ名"
+        required: true
+        type: string
 
 jobs:
   deploy:
-    name: deploy
+    name: Deploy to ECS
     runs-on: ubuntu-latest
 
+    env:
+      AWS_REGION: ${{ inputs.aws-region }}
+      ECR_REPOSITORY: ${{ inputs.ecr-repository }}
+      ECS_SERVICE: ${{ inputs.aws-service }}
+      ECS_CLUSTER: ${{ inputs.aws-cluster }}
+      ECS_TASK_DEFINITION: ${{ inputs.aws-task-definition }}
+      CONTAINER_NAME: ${{ inputs.container-name }}
+
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v4
 
       - name: Configure AWS credentials
