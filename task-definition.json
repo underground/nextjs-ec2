@@ -3,8 +3,8 @@
   "family": "frontend-task",
   "containerDefinitions": [
     {
-      "name": "placeholder",
-      "image": "placeholder",
+      "name": "frontend-container",
+      "image": "147997155304.dkr.ecr.ap-northeast-1.amazonaws.com/frontend:latest",
       "portMappings": [
         {
           "name": "frontend-container-80-tcp",
