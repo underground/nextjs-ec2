@@ -3,21 +3,13 @@ name: Deploy to PRD (AWS)
 on:
   workflow_dispatch:
 
-env:
-  AWS_REGION: ap-northeast-1
-  ECR_REPOSITORY: frontend
-  ECS_SERVICE: test-service
-  ECS_CLUSTER: frontend-cluster
-  ECS_TASK_DEFINITION: task-definition.json
-  CONTAINER_NAME: frontend-container
-
 jobs:
   deploy-prd:
     uses: ./.github/workflows/deploy.yml
     with:
-      aws-region: ${{ env.AWS_REGION }}
-      ecr-repository: ${{ env.ECR_REPOSITORY }}
-      aws-service: ${{ env.ECS_SERVICE }}
-      aws-cluster: ${{ env.ECS_CLUSTER }}
-      aws-task-definition: ${{ env.ECS_TASK_DEFINITION }}
-      container-name: ${{ env.CONTAINER_NAME }}
+      aws-region: ap-northeast-1
+      ecr-repository: frontend
+      aws-service: test-service
+      aws-cluster: frontend-cluster
+      aws-task-definition: deploy/task-definition.json
+      container-name: frontend-container
