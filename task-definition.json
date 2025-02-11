@@ -35,6 +35,5 @@
   "memory": "3 GB",
   "cpu": "1 vCPU",
   "placementConstraints": [],
-  "compatibilities": ["EC2", "FARGATE"],
   "executionRoleArn": "arn:aws:iam::147997155304:role/ecsTaskExecutionRole"
 }
