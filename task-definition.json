@@ -1,0 +1,40 @@
+{
+  "requiresCompatibilities": ["FARGATE"],
+  "family": "frontend-task",
+  "containerDefinitions": [
+    {
+      "name": "placeholder",
+      "image": "placeholder",
+      "portMappings": [
+        {
+          "name": "frontend-container-80-tcp",
+          "containerPort": 80,
+          "hostPort": 80,
+          "protocol": "tcp",
+          "appProtocol": "http"
+        },
+        {
+          "name": "frontend-container-3000-tcp",
+          "containerPort": 3000,
+          "hostPort": 3000,
+          "protocol": "tcp",
+          "appProtocol": "http"
+        }
+      ],
+      "essential": true,
+      "environment": [],
+      "environmentFiles": [],
+      "mountPoints": [],
+      "volumesFrom": [],
+      "ulimits": [],
+      "systemControls": []
+    }
+  ],
+  "volumes": [],
+  "networkMode": "awsvpc",
+  "memory": "3 GB",
+  "cpu": "1 vCPU",
+  "placementConstraints": [],
+  "compatibilities": ["EC2", "FARGATE"],
+  "executionRoleArn": "arn:aws:iam::147997155304:role/ecsTaskExecutionRole"
+}
