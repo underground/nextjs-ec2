@@ -6,6 +6,9 @@ on:
 jobs:
   deploy-prd:
     uses: ./.github/workflows/deploy.yml
+    secrets:
+      aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
     with:
       aws-region: ap-northeast-1
       ecr-repository: frontend
